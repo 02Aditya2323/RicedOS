@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      http-equiv="Cross-Origin-Opener-Policy"
+      content="same-origin"
+    />
+
+    <meta
+      http-equiv="Cross-Origin-Embedder-Policy"
+      content="require-corp"
+    />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>WebLinux</title>
+
+    <!--
+      Load CheerpX as an ES module.
+
+      IMPORTANT:
+      Do NOT use cx.js here.
+      cx.esm.js must remain an ES module so its
+      internal relative imports resolve correctly.
+    -->
+    <script type="module">
+      window.__cheerpXPromise = import(
+        "https://cxrtnc.leaningtech.com/1.2.8/cx.esm.js"
+      ).then((CheerpX) => {
+        window.CheerpX = CheerpX;
+        return CheerpX;
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
