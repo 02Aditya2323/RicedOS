@@ -107,8 +107,10 @@ export class LinuxRuntime {
         console.log("2. CheerpX loaded");
         onStatus?.("Streaming Linux EXT2 image...");
         console.log("3. Loading Linux EXT2 image...");
-        // Mount remote EXT2 filesystem image via HTTP Range requests
-        this.httpDevice = await this.CheerpX.HttpBytesDevice.create("/linux.ext2");
+        // Mount remote EXT2 filesystem image via HTTP Range requests (local or cloud B2 object storage)
+        const ext2Url = import.meta.env.VITE_EXT2_URL || "/linux.ext2";
+        console.log(`Loading EXT2 filesystem image from: ${ext2Url}`);
+        this.httpDevice = await this.CheerpX.HttpBytesDevice.create(ext2Url);
 
         console.log("4. EXT2 image loaded and cached in memory");
         this.isBaseReady = true;
